@@ -27,6 +27,7 @@ Fokus je na metodologiji i pravilnoj interpretaciji testova, bez fokusiranja na 
 - `Pristupni rad-2025-26.docx` - tekst zadatka / specifikacija rada
 - `analysis_submission.pdf` - finalni PDF za predaju (bez prikaza code ćelija)
 - `requirements.txt` - reproducibilni popis Python paketa (`pip freeze`)
+- `requirements-colab.txt` - minimalni popis paketa za pokretanje u Google Colabu
 
 ## Kako pokrenuti projekt (detaljan walkthrough)
 
@@ -81,15 +82,40 @@ Opcija B (VS Code):
 - odaberi Python kernel iz aktivnog virtualnog okruženja (`.venv`)
 - pokreni **Run All**
 
-### 5) Opcionalno: izvoz "submission" verzije bez code ćelija
+## Pokretanje u Google Colabu
 
-Ako želiš ponovno generirati HTML bez prikaza ulaznog koda:
+Google Colab je dobra opcija ako želiš pokretati projekt bez lokalne instalacije Pythona i Jupytera.
 
-```bash
-jupyter nbconvert --to html --no-input --output analysis_submission analysis.ipynb
+### 1) Otvaranje notebooka
+
+- otvori [Google Colab](https://colab.research.google.com/)
+- odaberi **Upload notebook**
+- učitaj datoteku `analysis.ipynb`
+
+### 2) Instalacija paketa u Colabu
+
+U prvoj ćeliji pokreni:
+
+```python
+!pip install -q -r requirements-colab.txt
 ```
 
-Nakon toga možeš iz browsera napraviti **Print to PDF** i dobiti predajnu PDF verziju.
+### 3) Učitavanje podataka
+
+- u Colabu učitaj datoteku `demand.XLSX` (panel Files -> Upload)
+- zatim pokreni ovu ćeliju da se uskladi naziv koji koristi notebook:
+
+```python
+import os
+import shutil
+
+if os.path.exists("demand.XLSX") and not os.path.exists("demand.xlsx"):
+    shutil.copy("demand.XLSX", "demand.xlsx")
+```
+
+### 4) Pokretanje analize
+
+- u Colabu odaberi **Runtime -> Run all**
 
 ## Praktične napomene i poznata ograničenja
 
@@ -97,6 +123,7 @@ Nakon toga možeš iz browsera napraviti **Print to PDF** i dobiti predajnu PDF 
 - Na Windowsu to najčešće radi zbog case-insensitive datotečnog sustava.
 - Na Linux/macOS (case-sensitive sustavi) potrebno je uskladiti naziv datoteke i putanju u kodu.
 - `analysis.ipynb` je izvor istine; PDF je izlazni deliverable.
+- `requirements.txt` je puni reproducibilni freeze lokalnog (Windows) okruženja; za Colab koristi `requirements-colab.txt`.
 
 ## Kratki sažetak na engleskom
 
