@@ -10,6 +10,9 @@ __pycache__/
 
 # Jupyter Notebook checkpoints
 .ipynb_checkpoints/
+.ipython/
+.jupyter_runtime/
+analysis.tested.ipynb
 
 # Distribution / packaging
 dist/
