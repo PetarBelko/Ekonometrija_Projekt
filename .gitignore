@@ -13,6 +13,11 @@ __pycache__/
 .ipython/
 .jupyter_runtime/
 analysis.tested.ipynb
+.browser_tmp/
+analysis_submission.html
+
+# Editor settings
+.vscode/
 
 # Distribution / packaging
 dist/
